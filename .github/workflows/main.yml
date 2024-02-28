@@ -15,3 +15,10 @@ jobs:
 
     - name: Run a sample script
       run: echo "Hello, GitHub Actions!"
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify Deployment Status
+        run: echo "Deployment completed successfully!"
