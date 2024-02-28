@@ -24,4 +24,5 @@ jobs:
     steps:
       - name: Notify Deployment Status
         #run: echo "Deployment completed successfully!"
-        run: echo "Deployed version: ${{env.VERSION}}"
+        id: git-version
+        run: echo "Deployed version=$(git rev-parse HEAD)"
