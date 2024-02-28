@@ -16,8 +16,7 @@ jobs:
       run: echo "Hello, GitHub Actions!"
     - name: Get Git commit hash
       id: git-version
-      #run: echo "VERSION=$git rev-parse HEAD" >> $GITHUB_ENV
-      run: echo "VERSION=120"
+      run: echo "VERSION=$git rev-parse HEAD" >> $GITHUB_ENV
   notify:
     needs: build
     runs-on: ubuntu-latest
@@ -28,3 +27,16 @@ jobs:
         #id: git-version
         run: |
           echo "deployment version: ${{ steps.git-version.outputs.VERSION}} "
+      - name: Extract Service Name and URL
+        id: extract
+        run: |
+          LOG_OUTPUT=$(cat pytest.log)
+          SERVICE_NAME=$(echo "$LOG_OUTPUT" | grep 'ServiceName' | sed -n 's/.*ServiceName: \([^ ]*\).*/\1/p')
+          SERVICE_URL=$(echo "$LOG_OUTPUT" | grep 'ServiceURL' | sed -n 's/.*ServiceURL: \([^ ]*\).*/\1/p')
+          echo "::set-output name=service_name::$SERVICE_NAME"
+          echo "::set-output name=service_url::$SERVICE_URL"
+      
+      - name: Print Service Name and URL
+        run: |
+          echo "Service Name: ${{ steps.extract.outputs.service_name }}"
+          echo "Service URL: ${{ steps.extract.outputs.service_url }}"
