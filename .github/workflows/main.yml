@@ -26,4 +26,4 @@ jobs:
         #run: echo "Deployment completed successfully!"
         #id: git-version
         run: |
-        continue-on-error: ${{ env.VERSION }}"
+          echo "deployment version: ${{ steps.git-version.outputs.VERSION}} "
