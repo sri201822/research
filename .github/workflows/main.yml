@@ -12,13 +12,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Run a sample script
       run: echo "Hello, GitHub Actions!"
+    - name: Get Git commit hash
+      id: git-version
+      run: echo "VERSION=$(git rev-parse HEAD)" >> $GITHUB_ENV
   notify:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
       - name: Notify Deployment Status
-        run: echo "Deployment completed successfully!"
+        #run: echo "Deployment completed successfully!"
+        run: echo Sys.getenv('VERSION')
