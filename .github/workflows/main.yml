@@ -16,7 +16,8 @@ jobs:
       run: echo "Hello, GitHub Actions!"
     - name: Get Git commit hash
       id: git-version
-      run: echo "VERSION=$git rev-parse HEAD" >> $GITHUB_ENV
+      #run: echo "VERSION=$git rev-parse HEAD" >> $GITHUB_ENV
+      run: echo "VERSION=120"
   notify:
     needs: build
     runs-on: ubuntu-latest
