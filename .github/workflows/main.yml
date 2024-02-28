@@ -24,4 +24,4 @@ jobs:
     steps:
       - name: Notify Deployment Status
         #run: echo "Deployment completed successfully!"
-        run: echo Sys.getenv('VERSION')
+        run: echo "Deployed version: ${{env.VERSION}}"
