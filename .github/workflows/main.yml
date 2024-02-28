@@ -29,7 +29,9 @@ jobs:
           echo "deployment version: ${{ steps.git-version.outputs.VERSION}} "
       - name: Extract Service Name and URL
         id: extract
+        working-directory: ./
         run: |
+          
           LOG_OUTPUT=$(cat test.log)
           SERVICE_NAME=$(echo "$LOG_OUTPUT" | grep 'ServiceName' | sed -n 's/.*ServiceName: \([^ ]*\).*/\1/p')
           SERVICE_URL=$(echo "$LOG_OUTPUT" | grep 'ServiceURL' | sed -n 's/.*ServiceURL: \([^ ]*\).*/\1/p')
