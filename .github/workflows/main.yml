@@ -29,7 +29,7 @@ jobs:
           echo "deployment version: ${{ steps.git-version.outputs.VERSION}} "
       - name: Extract Service Name and URL
         id: extract
-        working-directory: ./
+        working-directory: ./reserach/
         run: |
           
           LOG_OUTPUT=$(cat test.log)
