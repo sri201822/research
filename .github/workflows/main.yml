@@ -32,7 +32,7 @@ jobs:
         working-directory: /home/runner/work/research/
         run: |
           
-          LOG_OUTPUT=$(cat test.log)
+          LOG_OUTPUT=$cat test.log
           SERVICE_NAME=$(echo "$LOG_OUTPUT" | grep 'ServiceName' | sed -n 's/.*ServiceName: \([^ ]*\).*/\1/p')
           SERVICE_URL=$(echo "$LOG_OUTPUT" | grep 'ServiceURL' | sed -n 's/.*ServiceURL: \([^ ]*\).*/\1/p')
           echo "::set-output name=service_name::$SERVICE_NAME"
