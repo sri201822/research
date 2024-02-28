@@ -16,7 +16,7 @@ jobs:
       run: echo "Hello, GitHub Actions!"
     - name: Get Git commit hash
       id: git-version
-      run: echo "VERSION=$(git rev-parse HEAD)" >> $GITHUB_ENV
+      run: echo "VERSION=$git rev-parse HEAD" >> $GITHUB_ENV
   notify:
     needs: build
     runs-on: ubuntu-latest
@@ -24,5 +24,6 @@ jobs:
     steps:
       - name: Notify Deployment Status
         #run: echo "Deployment completed successfully!"
-        id: git-version
-        run: echo "Deployed version=$(git rev-parse HEAD)"
+        #id: git-version
+        run: |
+        echo "Deployed version: ${{ env.VERSION }}"
