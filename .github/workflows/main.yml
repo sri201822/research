@@ -34,3 +34,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+name: Extended Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run tests
+      run: |
+        chmod +x run_tests.sh
+        ./run_tests.sh
